@@ -1,0 +1,340 @@
+{
+  "$defs": {
+    "CheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Threshold"
+        },
+        "invalidating": {
+          "default": true,
+          "title": "Invalidating",
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "passed"
+      ],
+      "title": "CheckResult",
+      "type": "object"
+    },
+    "CodeInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "default": "unknown",
+          "title": "Commit",
+          "type": "string"
+        },
+        "dirty": {
+          "default": false,
+          "title": "Dirty",
+          "type": "boolean"
+        },
+        "llmlab_version": {
+          "default": "0.1.0.dev0",
+          "title": "Llmlab Version",
+          "type": "string"
+        }
+      },
+      "title": "CodeInfo",
+      "type": "object"
+    },
+    "EnvInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "python_version": {
+          "default": "",
+          "title": "Python Version",
+          "type": "string"
+        },
+        "platform": {
+          "default": "",
+          "title": "Platform",
+          "type": "string"
+        },
+        "cpu": {
+          "default": "",
+          "title": "Cpu",
+          "type": "string"
+        },
+        "pip_freeze_sha256": {
+          "default": "",
+          "title": "Pip Freeze Sha256",
+          "type": "string"
+        }
+      },
+      "title": "EnvInfo",
+      "type": "object"
+    },
+    "WorkloadSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "fixed_shape",
+          "default": "fixed_shape",
+          "title": "Kind",
+          "type": "string"
+        },
+        "prompt_tokens": {
+          "default": 2048,
+          "title": "Prompt Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 1024,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "seed": {
+          "default": 20260925,
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "title": "WorkloadSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "experiment_id": {
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "manifest_sha256": {
+      "default": "",
+      "title": "Manifest Sha256",
+      "type": "string"
+    },
+    "prereg_commit": {
+      "default": "",
+      "title": "Prereg Commit",
+      "type": "string"
+    },
+    "prereg_time": {
+      "default": "",
+      "title": "Prereg Time",
+      "type": "string"
+    },
+    "code": {
+      "$ref": "#/$defs/CodeInfo"
+    },
+    "environment": {
+      "$ref": "#/$defs/EnvInfo"
+    },
+    "engine_name": {
+      "default": "vllm",
+      "title": "Engine Name",
+      "type": "string"
+    },
+    "engine_version": {
+      "default": "",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "engine_args": {
+      "additionalProperties": true,
+      "title": "Engine Args",
+      "type": "object"
+    },
+    "instance_id": {
+      "default": "",
+      "title": "Instance Id",
+      "type": "string"
+    },
+    "gpu_name": {
+      "default": "",
+      "title": "Gpu Name",
+      "type": "string"
+    },
+    "gpu_total_bytes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Gpu Total Bytes"
+    },
+    "model_id": {
+      "default": "",
+      "title": "Model Id",
+      "type": "string"
+    },
+    "model_revision": {
+      "default": "",
+      "title": "Model Revision",
+      "type": "string"
+    },
+    "weight_bytes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Weight Bytes"
+    },
+    "m_kv_bytes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "M Kv Bytes"
+    },
+    "workload": {
+      "$ref": "#/$defs/WorkloadSpec"
+    },
+    "workload_hash": {
+      "default": "",
+      "title": "Workload Hash",
+      "type": "string"
+    },
+    "concurrency": {
+      "default": 0,
+      "title": "Concurrency",
+      "type": "integer"
+    },
+    "config_name": {
+      "default": "",
+      "title": "Config Name",
+      "type": "string"
+    },
+    "repetition": {
+      "default": 0,
+      "title": "Repetition",
+      "type": "integer"
+    },
+    "started_utc": {
+      "default": "",
+      "title": "Started Utc",
+      "type": "string"
+    },
+    "ended_utc": {
+      "default": "",
+      "title": "Ended Utc",
+      "type": "string"
+    },
+    "window_start_ns": {
+      "default": 0,
+      "title": "Window Start Ns",
+      "type": "integer"
+    },
+    "window_end_ns": {
+      "default": 0,
+      "title": "Window End Ns",
+      "type": "integer"
+    },
+    "counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Counts",
+      "type": "object"
+    },
+    "checks": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CheckResult"
+      },
+      "title": "Checks",
+      "type": "object"
+    },
+    "valid": {
+      "default": true,
+      "title": "Valid",
+      "type": "boolean"
+    },
+    "invalid_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Invalid Reasons",
+      "type": "array"
+    },
+    "evidence": {
+      "default": "MEASURED",
+      "enum": [
+        "MEASURED",
+        "MOCK"
+      ],
+      "title": "Evidence",
+      "type": "string"
+    },
+    "tier": {
+      "default": 2,
+      "title": "Tier",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "experiment_id"
+  ],
+  "title": "RunMetadata",
+  "type": "object"
+}

@@ -1,0 +1,290 @@
+{
+  "$defs": {
+    "Checks": {
+      "additionalProperties": false,
+      "properties": {
+        "max_error_rate": {
+          "default": 0.01,
+          "title": "Max Error Rate",
+          "type": "number"
+        },
+        "stability_tolerance": {
+          "default": 0.1,
+          "title": "Stability Tolerance",
+          "type": "number"
+        },
+        "loop_lag_p99_ms": {
+          "default": 5.0,
+          "title": "Loop Lag P99 Ms",
+          "type": "number"
+        },
+        "client_cpu_max": {
+          "default": 0.8,
+          "title": "Client Cpu Max",
+          "type": "number"
+        }
+      },
+      "title": "Checks",
+      "type": "object"
+    },
+    "ClientConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "warmup_s": {
+          "default": 60.0,
+          "title": "Warmup S",
+          "type": "number"
+        },
+        "stagger_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "const": "auto",
+              "type": "string"
+            }
+          ],
+          "default": "auto",
+          "title": "Stagger S"
+        },
+        "window_min_s": {
+          "default": 180.0,
+          "title": "Window Min S",
+          "type": "number"
+        },
+        "window_max_s": {
+          "default": 480.0,
+          "title": "Window Max S",
+          "type": "number"
+        },
+        "min_completed": {
+          "default": 150,
+          "title": "Min Completed",
+          "type": "integer"
+        },
+        "request_timeout_s": {
+          "default": 900.0,
+          "title": "Request Timeout S",
+          "type": "number"
+        },
+        "drain_timeout_s": {
+          "default": 900.0,
+          "title": "Drain Timeout S",
+          "type": "number"
+        }
+      },
+      "title": "ClientConfig",
+      "type": "object"
+    },
+    "DecisionConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "kv_headroom": {
+          "default": 0.9,
+          "title": "Kv Headroom",
+          "type": "number"
+        }
+      },
+      "title": "DecisionConfig",
+      "type": "object"
+    },
+    "Gates": {
+      "additionalProperties": false,
+      "properties": {
+        "min_tail_samples": {
+          "default": 20,
+          "title": "Min Tail Samples",
+          "type": "integer"
+        }
+      },
+      "title": "Gates",
+      "type": "object"
+    },
+    "IdleWait": {
+      "additionalProperties": false,
+      "properties": {
+        "kv_usage_max": {
+          "default": 0.005,
+          "title": "Kv Usage Max",
+          "type": "number"
+        },
+        "timeout_s": {
+          "default": 180.0,
+          "title": "Timeout S",
+          "type": "number"
+        }
+      },
+      "title": "IdleWait",
+      "type": "object"
+    },
+    "OrderConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "randomize": {
+          "default": true,
+          "title": "Randomize",
+          "type": "boolean"
+        },
+        "seed": {
+          "default": 7,
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "title": "OrderConfig",
+      "type": "object"
+    },
+    "SweepConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "engine_args": {
+          "additionalProperties": true,
+          "title": "Engine Args",
+          "type": "object"
+        },
+        "concurrency": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Concurrency",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "SweepConfig",
+      "type": "object"
+    },
+    "TelemetryConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "metrics_interval_s": {
+          "default": 1.0,
+          "title": "Metrics Interval S",
+          "type": "number"
+        },
+        "nvml_interval_s": {
+          "default": 0.2,
+          "title": "Nvml Interval S",
+          "type": "number"
+        }
+      },
+      "title": "TelemetryConfig",
+      "type": "object"
+    },
+    "WorkloadSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "fixed_shape",
+          "default": "fixed_shape",
+          "title": "Kind",
+          "type": "string"
+        },
+        "prompt_tokens": {
+          "default": 2048,
+          "title": "Prompt Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 1024,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "seed": {
+          "default": 20260925,
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "title": "WorkloadSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "experiment_id": {
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+    },
+    "prereg": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Prereg"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "hardware": {
+      "title": "Hardware",
+      "type": "string"
+    },
+    "engine": {
+      "title": "Engine",
+      "type": "string"
+    },
+    "workload": {
+      "$ref": "#/$defs/WorkloadSpec"
+    },
+    "configs": {
+      "items": {
+        "$ref": "#/$defs/SweepConfig"
+      },
+      "title": "Configs",
+      "type": "array"
+    },
+    "repetitions": {
+      "default": 3,
+      "title": "Repetitions",
+      "type": "integer"
+    },
+    "order": {
+      "$ref": "#/$defs/OrderConfig"
+    },
+    "client": {
+      "$ref": "#/$defs/ClientConfig"
+    },
+    "idle_wait": {
+      "$ref": "#/$defs/IdleWait"
+    },
+    "telemetry": {
+      "$ref": "#/$defs/TelemetryConfig"
+    },
+    "gates": {
+      "$ref": "#/$defs/Gates"
+    },
+    "checks": {
+      "$ref": "#/$defs/Checks"
+    },
+    "decision": {
+      "$ref": "#/$defs/DecisionConfig"
+    }
+  },
+  "required": [
+    "experiment_id",
+    "model",
+    "hardware",
+    "engine"
+  ],
+  "title": "ExperimentManifest",
+  "type": "object"
+}

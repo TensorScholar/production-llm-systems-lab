@@ -1,0 +1,91 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kv_cache_tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Kv Cache Tokens"
+    },
+    "num_gpu_blocks": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Num Gpu Blocks"
+    },
+    "block_size": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Block Size"
+    },
+    "max_concurrency": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Concurrency"
+    },
+    "max_concurrency_tokens": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Concurrency Tokens"
+    },
+    "model_load_bytes": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model Load Bytes"
+    },
+    "raw_lines": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Raw Lines",
+      "type": "array"
+    },
+    "parser_version": {
+      "default": "vllm-startup-v1",
+      "title": "Parser Version",
+      "type": "string"
+    }
+  },
+  "title": "StartupReport",
+  "type": "object"
+}

@@ -1,0 +1,172 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "worker_id": {
+      "default": 0,
+      "title": "Worker Id",
+      "type": "integer"
+    },
+    "t_send_ns": {
+      "title": "T Send Ns",
+      "type": "integer"
+    },
+    "t_first_ns": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "T First Ns"
+    },
+    "t_last_ns": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "T Last Ns"
+    },
+    "n_chunks": {
+      "default": 0,
+      "title": "N Chunks",
+      "type": "integer"
+    },
+    "n_prompt_tokens": {
+      "default": 0,
+      "title": "N Prompt Tokens",
+      "type": "integer"
+    },
+    "n_output_tokens": {
+      "default": 0,
+      "title": "N Output Tokens",
+      "type": "integer"
+    },
+    "status": {
+      "default": "ok",
+      "enum": [
+        "ok",
+        "error",
+        "timeout"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "in_window": {
+      "default": true,
+      "title": "In Window",
+      "type": "boolean"
+    },
+    "ttft_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ttft S"
+    },
+    "e2e_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "E2E S"
+    },
+    "tpot_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tpot S"
+    },
+    "itl_p50_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Itl P50 S"
+    },
+    "itl_p95_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Itl P95 S"
+    },
+    "itl_max_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Itl Max S"
+    },
+    "multi_token_chunks": {
+      "default": false,
+      "title": "Multi Token Chunks",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "run_id",
+    "request_id",
+    "t_send_ns"
+  ],
+  "title": "RequestRecord",
+  "type": "object"
+}

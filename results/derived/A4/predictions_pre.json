@@ -1,0 +1,28 @@
+{
+  "experiment_id": "A4",
+  "model": {
+    "m_kv_bytes": 57344,
+    "g_bar_tokens": 2567.507331378299,
+    "g_max_tokens": 3072,
+    "decode_weight_bytes": 15233241088,
+    "tpot_floor_s": 0.02563412038068426
+  },
+  "workload": {
+    "prompt_tokens": 2048,
+    "output_tokens": 1024,
+    "block_size": 16
+  },
+  "configs": {
+    "pool-full": {
+      "capacity_tokens": null,
+      "saturation_band": null,
+      "capacity_source": "pending-A3"
+    },
+    "pool-reduced": {
+      "capacity_tokens": null,
+      "saturation_band": null,
+      "capacity_source": "pending-A3"
+    }
+  },
+  "claims_note": "criteria frozen in PREREG.md; predictions committed before first GPU run"
+}

@@ -1,0 +1,10 @@
+{
+  "inputs": [
+    "src/llmlab/loadgen.py",
+    "src/llmlab/testing/mock_server.py"
+  ],
+  "generator": "experiments/B_serving/B0_harness_accuracy/generate_b0.py",
+  "environment": "macOS-26.5.2-arm64-arm-64bit",
+  "evidence": "MOCK",
+  "note": "in-process mock; same perf_counter clock; prompt-hash matching"
+}

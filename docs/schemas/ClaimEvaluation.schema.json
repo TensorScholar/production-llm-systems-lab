@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "claim_id": {
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "status": {
+      "default": "inconclusive",
+      "title": "Status",
+      "type": "string"
+    },
+    "observed": {
+      "default": "",
+      "title": "Observed",
+      "type": "string"
+    },
+    "expected": {
+      "default": "",
+      "title": "Expected",
+      "type": "string"
+    },
+    "residual": {
+      "default": "",
+      "title": "Residual",
+      "type": "string"
+    },
+    "reason": {
+      "default": "",
+      "title": "Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "claim_id"
+  ],
+  "title": "ClaimEvaluation",
+  "type": "object"
+}

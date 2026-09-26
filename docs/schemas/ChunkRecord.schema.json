@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "seq": {
+      "title": "Seq",
+      "type": "integer"
+    },
+    "t_ns": {
+      "title": "T Ns",
+      "type": "integer"
+    },
+    "text_len": {
+      "default": 0,
+      "title": "Text Len",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "request_id",
+    "seq",
+    "t_ns"
+  ],
+  "title": "ChunkRecord",
+  "type": "object"
+}

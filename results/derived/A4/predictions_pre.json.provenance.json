@@ -1,0 +1,8 @@
+{
+  "inputs": {
+    "experiments/A_kv_cache/A4_kv_saturation/manifest.yaml": "37adc9109c8b7ff57888e7a6b39a0d82fc949b812b5b5a29f7557b4daeb7bdda"
+  },
+  "generator": "llmlab.analysis.kv_capacity.write_predictions",
+  "weight_bytes": 15233241088,
+  "weight_source": "explicit --weight-bytes"
+}

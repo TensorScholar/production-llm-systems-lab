@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "hf_repo": {
+      "title": "Hf Repo",
+      "type": "string"
+    },
+    "revision": {
+      "title": "Revision",
+      "type": "string"
+    },
+    "license": {
+      "default": "Apache-2.0",
+      "title": "License",
+      "type": "string"
+    },
+    "serving_dtype": {
+      "default": "bfloat16",
+      "title": "Serving Dtype",
+      "type": "string"
+    },
+    "kv_cache_dtype_bytes": {
+      "default": 2,
+      "title": "Kv Cache Dtype Bytes",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "hf_repo",
+    "revision"
+  ],
+  "title": "ModelRef",
+  "type": "object"
+}

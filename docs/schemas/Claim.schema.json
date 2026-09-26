@@ -1,0 +1,56 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "type": {
+      "title": "Type",
+      "type": "string"
+    },
+    "statement": {
+      "title": "Statement",
+      "type": "string"
+    },
+    "pass_criterion": {
+      "default": "",
+      "title": "Pass Criterion",
+      "type": "string"
+    },
+    "status": {
+      "default": "data_required",
+      "enum": [
+        "proposed",
+        "supported",
+        "refuted",
+        "inconclusive",
+        "data_required"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "evidence": {
+      "default": "",
+      "title": "Evidence",
+      "type": "string"
+    },
+    "assumptions": {
+      "default": "",
+      "title": "Assumptions",
+      "type": "string"
+    },
+    "scope": {
+      "default": "",
+      "title": "Scope",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "statement"
+  ],
+  "title": "Claim",
+  "type": "object"
+}

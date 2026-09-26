@@ -1,0 +1,49 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "instance_id": {
+      "title": "Instance Id",
+      "type": "string"
+    },
+    "experiment_id": {
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "config_name": {
+      "title": "Config Name",
+      "type": "string"
+    },
+    "repetition": {
+      "title": "Repetition",
+      "type": "integer"
+    },
+    "started_utc": {
+      "default": "",
+      "title": "Started Utc",
+      "type": "string"
+    },
+    "engine_name": {
+      "default": "vllm",
+      "title": "Engine Name",
+      "type": "string"
+    },
+    "engine_version": {
+      "default": "",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "resolved_args": {
+      "additionalProperties": true,
+      "title": "Resolved Args",
+      "type": "object"
+    }
+  },
+  "required": [
+    "instance_id",
+    "experiment_id",
+    "config_name",
+    "repetition"
+  ],
+  "title": "EngineInstance",
+  "type": "object"
+}

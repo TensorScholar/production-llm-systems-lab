@@ -1,0 +1,63 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "default": "vllm",
+      "title": "Name",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "command": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Command",
+      "type": "array"
+    },
+    "host": {
+      "default": "127.0.0.1",
+      "title": "Host",
+      "type": "string"
+    },
+    "port": {
+      "default": 8000,
+      "title": "Port",
+      "type": "integer"
+    },
+    "startup_timeout_s": {
+      "default": 1200.0,
+      "title": "Startup Timeout S",
+      "type": "number"
+    },
+    "env": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Env",
+      "type": "object"
+    },
+    "base_args": {
+      "additionalProperties": true,
+      "title": "Base Args",
+      "type": "object"
+    },
+    "metrics_map": {
+      "default": "configs/engines/vllm-metrics.yaml",
+      "title": "Metrics Map",
+      "type": "string"
+    },
+    "log_parser": {
+      "default": "vllm-startup-v1",
+      "title": "Log Parser",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version"
+  ],
+  "title": "EngineConfig",
+  "type": "object"
+}

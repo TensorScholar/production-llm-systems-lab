@@ -407,7 +407,9 @@ def run_experiment(
                 # Warmup (skipped in startup-only mode).
                 if not startup_only:
                     _warmup(server, model_ref, man, safe_ids)
-                for n in order:
+                # Startup-only mode (empty concurrency): one N=0 point per
+                # (config, rep) holding the startup report and checks.
+                for n in order or [0]:
                     run_id = provenance.new_run_id(
                         man.experiment_id, sweep_cfg.name, rep, n, when, rng
                     )
@@ -543,8 +545,12 @@ def run_experiment(
                     invalid = [k for k, v in checks.items() if v.invalidating and not v.passed]
                     meta.valid = not invalid
                     meta.invalid_reasons = [f"{k}: {checks[k].reason}" for k in invalid]
-                    meta.window_start_ns = 0
-                    meta.window_end_ns = 0
+                    if startup_only:
+                        meta.window_start_ns = 0
+                        meta.window_end_ns = 0
+                    else:
+                        meta.window_start_ns = res.window_start_ns
+                        meta.window_end_ns = res.window_end_ns
                     meta.counts = {
                         "requests": len(records),
                         "ok_in_window": len(

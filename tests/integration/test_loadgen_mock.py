@@ -57,7 +57,9 @@ async def test_b0_accuracy_exact_match_n1() -> None:
     from llmlab.metrics import harness_accuracy
     from llmlab.testing import mock_server as ms
 
-    mock = MockConfig(capacity_tokens=4096, ttft_ms=20.0, itl_ms=5.0, seed=0)
+    # Slow cadence (50/20 ms) keeps event-loop pressure low so the gates
+    # measure harness fidelity, not machine load.
+    mock = MockConfig(capacity_tokens=4096, ttft_ms=50.0, itl_ms=20.0, seed=0)
     app = create_app(mock)
     client = TestClient(TestServer(app))
     await client.start_server()
@@ -72,7 +74,12 @@ async def test_b0_accuracy_exact_match_n1() -> None:
             for i in range(200)
         }
         res = await run_closed_loop(
-            request_stream(spec, safe), base, "mock-model", 1, _cfg(), "B0-exact"
+            request_stream(spec, safe),
+            base,
+            "mock-model",
+            1,
+            _cfg(window_min_s=4.0, window_max_s=12.0, min_completed=15),
+            "B0-exact",
         )
         ok_ids = {r.request_id for r in res.requests if r.in_window and r.status == "ok"}
         assert len(ok_ids) >= 20

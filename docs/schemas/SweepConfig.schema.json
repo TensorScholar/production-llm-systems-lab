@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "engine_args": {
+      "additionalProperties": true,
+      "title": "Engine Args",
+      "type": "object"
+    },
+    "concurrency": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Concurrency",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "SweepConfig",
+  "type": "object"
+}

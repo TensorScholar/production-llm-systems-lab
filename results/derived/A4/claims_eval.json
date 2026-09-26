@@ -1,0 +1,82 @@
+[
+  {
+    "claim_id": "A1-01",
+    "status": "supported",
+    "observed": "m_kv rows={'llama_m_kv': 131072, 'qwen_m_kv': 57344}, free_slots=56128",
+    "expected": "131072/57344 B/token, 56128 free slots",
+    "residual": "",
+    "reason": "Ch.4 golden reproduction"
+  },
+  {
+    "claim_id": "A1-02",
+    "status": "supported",
+    "observed": "57344",
+    "expected": "57344",
+    "residual": "",
+    "reason": ""
+  },
+  {
+    "claim_id": "A3-01",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no A3 startup reports"
+  },
+  {
+    "claim_id": "A3-02",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no held-out pool prediction"
+  },
+  {
+    "claim_id": "A4-01",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no occupancy table"
+  },
+  {
+    "claim_id": "A4-02",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no saturation/band data"
+  },
+  {
+    "claim_id": "A4-03",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no N=1 TPOT/floor"
+  },
+  {
+    "claim_id": "A4-04",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no serving-model table"
+  },
+  {
+    "claim_id": "A4-05",
+    "status": "data_required",
+    "observed": "",
+    "expected": "",
+    "residual": "",
+    "reason": "no littles-law/points table"
+  },
+  {
+    "claim_id": "B0-01",
+    "status": "inconclusive",
+    "observed": "ttft p99 0.00045858818, itl p99 0.0019181820799999",
+    "expected": "p99 \u2264 1 ms",
+    "residual": "",
+    "reason": "B0 table from non-reference machine; criterion is scoped to reference setup"
+  }
+]

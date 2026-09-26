@@ -160,7 +160,7 @@ def cmd_predict(args: argparse.Namespace) -> int:
                 capacity[str(r["config"])] = int(r["reported_pool_tokens"])
     exp = man.get("experiment_id", "A4")
     out = Path(f"results/derived/{exp}/predictions_pre.json")
-    write_predictions(man_path, spec, out, capacity or None)
+    write_predictions(man_path, spec, out, capacity or None, weight_bytes=args.weight_bytes)
     print(f"wrote {out} (capacity_source={'A3-derived' if capacity else 'pending-A3'})")
     return 0
 
@@ -290,6 +290,22 @@ def cmd_report(args: argparse.Namespace) -> int:
     if template.exists():
         _r.render_story(template, derived, template)
         print(f"rendered {template}")
+    # CLAIMS.md: merge claims_eval.json across derived dirs, render block.
+    claims_md = Path("CLAIMS.md")
+    if claims_md.exists():
+        import tempfile as _tf
+
+        merged: dict[str, dict[str, object]] = {}
+        for ev in sorted(Path("results/derived").rglob("claims_eval.json")):
+            for row in json.loads(ev.read_text(encoding="utf-8")):
+                merged[str(row.get("claim_id"))] = row
+        with _tf.TemporaryDirectory() as td:
+            tmpd = Path(td)
+            (tmpd / "claims_eval.json").write_text(
+                json.dumps(list(merged.values()), indent=2), encoding="utf-8"
+            )
+            _r.render_story(claims_md, tmpd, claims_md)
+        print(f"rendered {claims_md} ({len(merged)} evaluated claims)")
     print(f"figures: {len(made)} in {fig_dir}")
     return 0
 
@@ -373,8 +389,24 @@ def cmd_demo_mock(args: argparse.Namespace) -> int:
     for exp, manifest in demo_cfgs:
         man = yaml.safe_load(Path(manifest).read_text(encoding="utf-8"))
         man["repetitions"] = 1
+        repo = Path.cwd()
+        man["model"] = str(repo / "configs/models/qwen2.5-7b-instruct.yaml")
+        man["hardware"] = str(repo / "configs/hardware/a10g-24gb.yaml")
         for c in man.get("configs", []):
             c["concurrency"] = c.get("concurrency", [])[:3]
+            # Small shape with a known mock knee: P+O=48, C=96 -> N_sat=2,
+            # so grids [1, 2, 4] span below/at/above saturation.
+            c.setdefault("engine_args", {})["mock"] = {
+                "capacity_tokens": 96,
+                "ttft_ms": 5.0,
+                "itl_ms": 2.0,
+            }
+        man["workload"] = {
+            "kind": "fixed_shape",
+            "prompt_tokens": 32,
+            "output_tokens": 16,
+            "seed": 7,
+        }
         man["client"]["window_min_s"] = 3.0
         man["client"]["window_max_s"] = 10.0
         man["client"]["min_completed"] = 5
@@ -426,6 +458,7 @@ def build_parser() -> argparse.ArgumentParser:
     pr = sub.add_parser("predict", help="Write predictions_pre.json")
     pr.add_argument("manifest")
     pr.add_argument("--spec-json", default=None)
+    pr.add_argument("--weight-bytes", type=int, default=None)
     pr.set_defaults(func=cmd_predict)
 
     r = sub.add_parser("run", help="Execute runs")

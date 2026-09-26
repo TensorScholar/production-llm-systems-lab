@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "const": "fixed_shape",
+      "default": "fixed_shape",
+      "title": "Kind",
+      "type": "string"
+    },
+    "prompt_tokens": {
+      "default": 2048,
+      "title": "Prompt Tokens",
+      "type": "integer"
+    },
+    "output_tokens": {
+      "default": 1024,
+      "title": "Output Tokens",
+      "type": "integer"
+    },
+    "seed": {
+      "default": 20260925,
+      "title": "Seed",
+      "type": "integer"
+    }
+  },
+  "title": "WorkloadSpec",
+  "type": "object"
+}

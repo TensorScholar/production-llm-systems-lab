@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "peak_mem_bw_Bps": {
+      "title": "Peak Mem Bw Bps",
+      "type": "number"
+    },
+    "peak_dense_fp16_flops": {
+      "title": "Peak Dense Fp16 Flops",
+      "type": "number"
+    },
+    "sources": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "peak_mem_bw_Bps",
+    "peak_dense_fp16_flops"
+  ],
+  "title": "HardwareProfile",
+  "type": "object"
+}

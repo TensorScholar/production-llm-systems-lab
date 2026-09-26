@@ -1,0 +1,46 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "cap": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cap"
+    },
+    "binding": {
+      "default": "unknown",
+      "title": "Binding",
+      "type": "string"
+    },
+    "levers": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Levers",
+      "type": "array"
+    },
+    "predicted_knee": {
+      "default": "",
+      "title": "Predicted Knee",
+      "type": "string"
+    },
+    "measured_knee": {
+      "default": "",
+      "title": "Measured Knee",
+      "type": "string"
+    },
+    "narrative": {
+      "default": "",
+      "title": "Narrative",
+      "type": "string"
+    }
+  },
+  "title": "Decision",
+  "type": "object"
+}

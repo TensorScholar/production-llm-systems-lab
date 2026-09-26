@@ -1,0 +1,23 @@
+{
+  "figure": "a4_timeseries",
+  "inputs": {
+    "claims_eval.json": "067e2310a93b6a00174188e35be1393e555b994392a31d817d0a6102299a1041",
+    "decision.json": "60741213ae01eda45c5ecac2f5d3b1ce53b9fb3df729a1e8a37ba0c83de0cebd",
+    "predictions_pre.json": "36b0f842a833a2c40b2fe3871861b713915a90bac18a8d15a2f733876f3a8765"
+  },
+  "run_ids": [],
+  "claim_ids": [
+    "A1-01",
+    "A1-02",
+    "A3-01",
+    "A3-02",
+    "A4-01",
+    "A4-02",
+    "A4-03",
+    "A4-04",
+    "A4-05",
+    "B0-01"
+  ],
+  "evidence": "MOCK",
+  "generator": "llmlab.report.make_figures"
+}

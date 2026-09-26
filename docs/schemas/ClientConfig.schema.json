@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "warmup_s": {
+      "default": 60.0,
+      "title": "Warmup S",
+      "type": "number"
+    },
+    "stagger_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "const": "auto",
+          "type": "string"
+        }
+      ],
+      "default": "auto",
+      "title": "Stagger S"
+    },
+    "window_min_s": {
+      "default": 180.0,
+      "title": "Window Min S",
+      "type": "number"
+    },
+    "window_max_s": {
+      "default": 480.0,
+      "title": "Window Max S",
+      "type": "number"
+    },
+    "min_completed": {
+      "default": 150,
+      "title": "Min Completed",
+      "type": "integer"
+    },
+    "request_timeout_s": {
+      "default": 900.0,
+      "title": "Request Timeout S",
+      "type": "number"
+    },
+    "drain_timeout_s": {
+      "default": 900.0,
+      "title": "Drain Timeout S",
+      "type": "number"
+    }
+  },
+  "title": "ClientConfig",
+  "type": "object"
+}

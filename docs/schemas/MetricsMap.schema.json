@@ -1,0 +1,63 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kv_usage": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Kv Usage",
+      "type": "array"
+    },
+    "running": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Running",
+      "type": "array"
+    },
+    "waiting": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Waiting",
+      "type": "array"
+    },
+    "preemptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Preemptions",
+      "type": "array"
+    },
+    "prompt_tokens": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Prompt Tokens",
+      "type": "array"
+    },
+    "generation_tokens": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Generation Tokens",
+      "type": "array"
+    },
+    "cache_config_info": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Cache Config Info",
+      "type": "array"
+    },
+    "essential": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Essential",
+      "type": "array"
+    }
+  },
+  "title": "MetricsMap",
+  "type": "object"
+}
