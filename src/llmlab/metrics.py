@@ -246,15 +246,19 @@ def harness_accuracy(
                 abs((client_abs[i] - client_abs[i - 1]) - (truth[i] - truth[i - 1])) / 1e9
             )
 
-    def _p99(xs: list[float]) -> float | None:
-        return float(np.percentile(np.asarray(xs), 99)) if xs else None
+    def _pct(xs: list[float], q: float) -> float | None:
+        return float(np.percentile(np.asarray(xs), q)) if xs else None
 
     return {
         "n_matched": n_matched,
         "n_ttft": len(ttft_errs),
         "n_itl": len(itl_errs),
-        "ttft_p99_err_s": _p99(ttft_errs),
-        "itl_p99_err_s": _p99(itl_errs),
+        "ttft_median_err_s": _pct(ttft_errs, 50),
+        "itl_median_err_s": _pct(itl_errs, 50),
+        "ttft_p90_err_s": _pct(ttft_errs, 90),
+        "itl_p90_err_s": _pct(itl_errs, 90),
+        "ttft_p99_err_s": _pct(ttft_errs, 99),
+        "itl_p99_err_s": _pct(itl_errs, 99),
         "ttft_max_err_s": max(ttft_errs) if ttft_errs else None,
         "itl_max_err_s": max(itl_errs) if itl_errs else None,
     }

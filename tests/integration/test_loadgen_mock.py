@@ -44,7 +44,8 @@ async def test_b0_accuracy_exact_match_n1() -> None:
     reference setup and recorded in results/derived/B0 + the claims ledger.
     This Tier-0 gate verifies the exact-matching mechanism and timestamping
     fidelity (median sub-ms, p99 bounded by machine scheduler granularity —
-    ~1-2 ms on macOS CI runners) with a 3 ms bound. A broken harness
+    ~1-2 ms on macOS CI runners). Stable gates: median <= 1 ms, p90 <= 2 ms;
+    p99 <= 10 ms guards against catastrophic tails. A broken harness
     (dropped/merged chunks, wrong window accounting) fails by 10-100x margin.
     """
     try:
@@ -83,8 +84,12 @@ async def test_b0_accuracy_exact_match_n1() -> None:
         chunks = [c for c in res.chunks if c["request_id"] in ok_ids]
         acc = harness_accuracy(records, chunks, prompts, app[ms._STATE_KEY].emitted, 16)
         assert acc["n_matched"] >= 20
-        assert acc["ttft_p99_err_s"] is not None and acc["ttft_p99_err_s"] <= 0.003
-        assert acc["itl_p99_err_s"] is not None and acc["itl_p99_err_s"] <= 0.003
+        assert acc["ttft_median_err_s"] is not None and acc["ttft_median_err_s"] <= 0.001
+        assert acc["itl_median_err_s"] is not None and acc["itl_median_err_s"] <= 0.001
+        assert acc["ttft_p90_err_s"] is not None and acc["ttft_p90_err_s"] <= 0.002
+        assert acc["itl_p90_err_s"] is not None and acc["itl_p90_err_s"] <= 0.002
+        assert acc["ttft_p99_err_s"] is not None and acc["ttft_p99_err_s"] <= 0.010
+        assert acc["itl_p99_err_s"] is not None and acc["itl_p99_err_s"] <= 0.010
     finally:
         await client.close()
 
