@@ -1,0 +1,1 @@
+{"architectures": ["GPT2LMHeadModel"], "hidden_size": 768, "num_attention_heads": 12, "num_hidden_layers": 12, "vocab_size": 50257, "tie_word_embeddings": true, "model_type": "gpt2"}

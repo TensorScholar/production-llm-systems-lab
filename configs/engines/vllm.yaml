@@ -1,0 +1,15 @@
+name: vllm
+version: "PIN-IN-T13"
+command: ["vllm", "serve"]
+host: 127.0.0.1
+port: 8000
+startup_timeout_s: 1200
+env: {}
+base_args:
+  seed: 0
+  enable_prefix_caching: false
+  max_num_seqs: 256
+  max_num_batched_tokens: 2048
+  block_size: 16
+metrics_map: configs/engines/vllm-metrics.yaml
+log_parser: vllm-startup-v1

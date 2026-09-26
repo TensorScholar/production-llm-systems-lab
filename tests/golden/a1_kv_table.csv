@@ -1,0 +1,3 @@
+model,layers,kv_heads,head_dim,attention,m_kv_bytes,g_bar_2048_1024_q16,g_max_2048_1024_q16
+qwen2.5-7b-instruct,28,4,128,gqa,57344,2567.507331378299,3072
+llama3-8b-shape,32,8,128,gqa,131072,2567.507331378299,3072

@@ -1,0 +1,27 @@
+# Chapter 4 golden examples (book Ch. 4.4 / 4.4.1).
+# m_kv = 131072 B/token corresponds to L=32, n_kv=8, d_h=128, b=2
+# (Llama-3-8B-shaped reference config).
+m_kv_bytes_per_token: 131072
+bytes_per_sequence_T4096_MiB: 512
+batch_gib:
+  # tokens -> GiB (tokens * 131072 B, displayed in GiB)
+  - {tokens: 60480, gib: 7.3828}
+  - {tokens: 80000, gib: 9.7656}
+  - {tokens: 140480, gib: 17.1484}
+free_slots:
+  total: 196608
+  used: 140480
+  free: 56128
+free_slots_after_3gib_reserve: 31552
+exercise:
+  m_kv_bytes_per_token: 81920
+  gib_for_16384_tokens: 1.25
+slack_q16:
+  "1": 15
+  "16": 0
+  "17": 15
+  "31": 1
+  "32": 0
+  "33": 15
+g_decode_P2048_O1024_q16: 2567.5
+g_decode_tolerance: 0.01

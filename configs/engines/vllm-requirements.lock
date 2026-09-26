@@ -1,0 +1,4 @@
+# Engine environment lockfile — pinned in T13 on the reference GPU.
+# Placeholder until T13 captures `pip freeze` from the engine environment.
+# llmlab validate rejects PIN-IN-T13 unless --allow-unpinned is passed.
+PIN-IN-T13

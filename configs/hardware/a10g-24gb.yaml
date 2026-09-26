@@ -1,0 +1,7 @@
+id: a10g-24gb
+name: NVIDIA A10G
+peak_mem_bw_Bps: 6.0e11
+peak_dense_fp16_flops: 1.25e14
+sources:
+  - "https://www.nvidia.com/en-us/data-center/products/a10-gpu/"
+notes: "Datasheet ceilings, not achievable rates. Usable memory comes from NVML at run time. Author to verify against the source in T13."

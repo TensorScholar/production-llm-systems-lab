@@ -1,0 +1,14 @@
+name: mock
+version: "mock-0.1"
+command: ["python", "-m", "llmlab.testing.mock_server"]
+host: 127.0.0.1
+port: 8000
+startup_timeout_s: 120
+env: {}
+base_args:
+  mock:
+    capacity_tokens: 4096
+    ttft_ms: 20.0
+    itl_ms: 5.0
+metrics_map: configs/engines/vllm-metrics.yaml
+log_parser: vllm-startup-v1

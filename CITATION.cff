@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: "Production LLM Systems Lab"
+version: 0.1.0.dev0
+date-released: 2026-09-26
+authors:
+  - name: TensorScholar
+license: Apache-2.0
+repository-code: "https://github.com/TensorScholar/production-llm-systems-lab"
+abstract: >-
+  Production-relevant measurement of LLM serving systems on bounded test
+  setups: KV-cache capacity, saturation behaviour, and harness accuracy.
+  Not evidence of operating commercial production systems.
+# DOI: to be assigned at v0.1.0 release via Zenodo (see T24).

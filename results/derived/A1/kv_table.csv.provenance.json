@@ -1,0 +1,6 @@
+{
+  "inputs": [
+    "configs/models/qwen2.5-7b-instruct.yaml"
+  ],
+  "generator": "llmlab a1"
+}

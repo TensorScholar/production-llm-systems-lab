@@ -1,0 +1,20 @@
+experiment_id: B0
+title: "Harness accuracy vs mock ground truth"
+model: ../../../configs/models/qwen2.5-7b-instruct.yaml
+hardware: ../../../configs/hardware/a10g-24gb.yaml
+engine: ../../../configs/engines/mock.yaml
+workload: {kind: fixed_shape, prompt_tokens: 32, output_tokens: 16, seed: 7}
+configs:
+  - name: mock
+    engine_args: {mock: {capacity_tokens: 262144, ttft_ms: 50.0, itl_ms: 20.0}}
+    concurrency: [1, 8, 32, 64]
+repetitions: 1
+order: {randomize: false, seed: 7}
+client: {warmup_s: 1.0, stagger_s: 0.5, window_min_s: 4.0, window_max_s: 20.0,
+         min_completed: 60, request_timeout_s: 60.0, drain_timeout_s: 60.0}
+idle_wait: {kv_usage_max: 0.005, timeout_s: 30}
+telemetry: {metrics_interval_s: 1.0, nvml_interval_s: 0.2}
+gates: {min_tail_samples: 20}
+checks: {max_error_rate: 0.01, stability_tolerance: 0.10,
+         loop_lag_p99_ms: 5.0, client_cpu_max: 0.80}
+decision: {kv_headroom: 0.90}

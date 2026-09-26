@@ -1,0 +1,93 @@
+# Claims ledger — conclusions traceable to evidence.
+# status ∈ {proposed, supported, refuted, inconclusive, data_required}
+# README/documentation claims must never exceed this ledger.
+
+- id: A1-01
+  type: Identity
+  statement: "The calculator reproduces every Ch. 4 example and exercise, including 56,128 free slots"
+  pass_criterion: Exact
+  status: data_required
+  evidence: "tests/golden/ch4_examples.yaml; results/derived/A1/kv_table.csv"
+  assumptions: "m_kv=131072 B/token (L=32, n_kv=8, d_h=128, b=2); 3 GiB reserve"
+  scope: "analytical identity, pinned Ch.4 examples"
+
+- id: A1-02
+  type: Identity
+  statement: "m_kv(Qwen2.5-7B-Instruct, BF16) = 57,344 B/token"
+  pass_criterion: "Exact, from the pinned config"
+  status: data_required
+  evidence: "results/derived/A1/kv_table.csv"
+  assumptions: "28 layers, 4 KV heads, head dim 128, 2 B/dtype"
+  scope: "Qwen2.5-7B-Instruct BF16"
+
+- id: A3-01
+  type: Implementation
+  statement: "Reported KV tokens = blocks x block size; reported max concurrency = C / max_model_len"
+  pass_criterion: "Exact / +-0.5%"
+  status: data_required
+  evidence: "results/derived/A3/reconciliation.csv"
+  assumptions: "startup log parses; cache_config_info cross-check passes"
+  scope: "pinned vLLM version on reference GPU"
+
+- id: A3-02
+  type: Model
+  statement: "Overhead measured on one config predicts the pool size of held-out configs"
+  pass_criterion: "+-5%"
+  status: data_required
+  evidence: "results/derived/A3/overhead_model.json"
+  assumptions: "non-KV overhead stable across gpu_memory_utilization settings"
+  scope: "reference GPU, two pool configs"
+
+- id: A4-01
+  type: Model
+  statement: "Below saturation, mean KV occupancy = N*gbar"
+  pass_criterion: "+-10% (analytic gbar), +-5% (semi-empirical)"
+  status: data_required
+  evidence: "results/derived/A4/occupancy.csv"
+  assumptions: "closed-loop, fixed shape 2048/1024, prefix caching off"
+  scope: "reference GPU/model/workload"
+
+- id: A4-02
+  type: Model
+  statement: "Engine queueing begins inside [C/g_max, C/gbar] (+- one grid step); reduced pool knee scales with capacity ratio"
+  pass_criterion: "Interval overlap; ratio +-15%"
+  status: data_required
+  evidence: "results/derived/A4/saturation.csv"
+  assumptions: "waiting>=0.5 primary indicator"
+  scope: "reference GPU/model/workload"
+
+- id: A4-03
+  type: Bound
+  statement: "TPOT(1) >= (W_dec + gbar*m_kv) / peak bandwidth; achieved bandwidth fraction reported"
+  pass_criterion: "Bound holds, otherwise measurement error"
+  status: data_required
+  evidence: "results/derived/A4/points.csv"
+  assumptions: "datasheet peak bandwidth ceiling"
+  scope: "reference GPU/model"
+
+- id: A4-04
+  type: Calibrated model
+  statement: "Calibrated on N=1 only, the mixed-batch model predicts TPOT and output throughput for unsaturated N>=2"
+  pass_criterion: "Median absolute residual <= 20%"
+  status: data_required
+  evidence: "results/derived/A4/serving_model.csv"
+  assumptions: "valid below saturation; uniform request shape"
+  scope: "reference GPU/model/workload"
+
+- id: A4-05
+  type: Model
+  statement: "Above saturation, throughput gains <= 5% per grid step and TTFT ~= TTFT_unsat + waiting/lambda"
+  pass_criterion: "<= 5%; +-20%"
+  status: data_required
+  evidence: "results/derived/A4/littles_law.csv"
+  assumptions: "closed-loop saturation regime"
+  scope: "reference GPU/model/workload"
+
+- id: B0-01
+  type: Harness
+  statement: "Timing error vs mock ground truth at N <= 64"
+  pass_criterion: "p99 <= 1 ms"
+  status: data_required
+  evidence: "results/derived/B0/harness_accuracy.csv"
+  assumptions: "in-process mock, same perf_counter clock, exact prompt-hash matching"
+  scope: "harness on development/reference machine"

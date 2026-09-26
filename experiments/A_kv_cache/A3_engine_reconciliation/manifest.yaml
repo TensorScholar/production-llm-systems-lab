@@ -1,0 +1,24 @@
+experiment_id: A3
+title: "Engine reconciliation: analytical vs startup-reported KV capacity"
+prereg: PREREG.md
+model: ../../../configs/models/qwen2.5-7b-instruct.yaml
+hardware: ../../../configs/hardware/a10g-24gb.yaml
+engine: ../../../configs/engines/vllm.yaml
+workload: {kind: fixed_shape, prompt_tokens: 2048, output_tokens: 1024, seed: 20260925}
+configs:
+  - name: pool-full
+    engine_args: {gpu_memory_utilization: 0.90, max_model_len: 4096}
+    concurrency: []
+  - name: pool-reduced
+    engine_args: {gpu_memory_utilization: 0.80, max_model_len: 4096}
+    concurrency: []
+repetitions: 2
+order: {randomize: true, seed: 7}
+client: {warmup_s: 60.0, stagger_s: auto, window_min_s: 180.0, window_max_s: 480.0,
+         min_completed: 150, request_timeout_s: 900.0, drain_timeout_s: 900.0}
+idle_wait: {kv_usage_max: 0.005, timeout_s: 180}
+telemetry: {metrics_interval_s: 1.0, nvml_interval_s: 0.2}
+gates: {min_tail_samples: 20}
+checks: {max_error_rate: 0.01, stability_tolerance: 0.10,
+         loop_lag_p99_ms: 5.0, client_cpu_max: 0.80}
+decision: {kv_headroom: 0.90}

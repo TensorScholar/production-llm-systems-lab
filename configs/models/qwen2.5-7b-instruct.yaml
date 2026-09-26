@@ -1,0 +1,6 @@
+id: qwen2.5-7b-instruct
+hf_repo: Qwen/Qwen2.5-7B-Instruct
+revision: "PIN-IN-T13"
+license: Apache-2.0
+serving_dtype: bfloat16
+kv_cache_dtype_bytes: 2
