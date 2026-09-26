@@ -12,8 +12,8 @@ import matplotlib as mpl
 
 mpl.use("Agg")
 mpl.rcParams["svg.hashsalt"] = "llmlab-v01"
-import matplotlib.pyplot as plt
-import pandas as pd
+import matplotlib.pyplot as plt  # noqa: E402 -- backend must be set before pyplot import
+import pandas as pd  # noqa: E402 -- backend must be set before pyplot import
 
 logger = logging.getLogger(__name__)
 
