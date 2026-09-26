@@ -11,6 +11,7 @@ from typing import Any
 import matplotlib as mpl
 
 mpl.use("Agg")
+mpl.rcParams["svg.hashsalt"] = "llmlab-v01"
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -153,6 +154,10 @@ def _render(fig_name: str, data: dict[str, pd.DataFrame], path: Path, meta: dict
         ax.set_title("")
         fig.tight_layout()
         fig.savefig(path, format="svg")
+        # Determinism: strip the render timestamp matplotlib embeds.
+        text = path.read_text(encoding="utf-8")
+        text = re.sub(r"\s*<dc:date>.*?</dc:date>\n?", "", text)
+        path.write_text(text, encoding="utf-8")
     finally:
         plt.close(fig)
 
