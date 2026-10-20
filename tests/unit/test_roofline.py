@@ -51,7 +51,7 @@ def test_tpot_floor_qwen_600gbs() -> None:
     w = roofline.decode_weight_bytes(QWEN, 2)
     m_kv = 2 * 28 * 4 * 128 * 2
     floor = roofline.tpot_floor_s(w, 2567.5 * m_kv, 6.0e11)
-    # (15233241088 + 147215360) / 6e11 ≈ 25.6 ms (blueprint quotes ≈23.6 ms
+    # (15233241088 + 147215360) / 6e11 ≈ 25.6 ms (the book quotes ≈23.6 ms
     # from an illustrative 14.15 GB weight figure; this test uses the exact
     # hand calculation above).
     assert floor == pytest.approx(0.02563, rel=0.02)

@@ -6,6 +6,6 @@ All notable changes to this project will be documented in this file.
 
 - Repository skeleton (T00): packaging, CI, governance docs, roadmap.
 
-## [0.1.0] — not yet released
+## [0.1.0] — 2026-10-21
 
-- Planned: complete v0.1 slice (T00–T24) per implementation blueprint.
+- Initial release: complete v0.1 controlled vertical slice (T00–T24).

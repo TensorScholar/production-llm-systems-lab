@@ -1,7 +1,7 @@
 """Typed configs and records (pydantic v2, extra="forbid").
 
 Every file the lab reads or writes is validated here, with JSON Schema
-export via ``llmlab schema``. Book §3.3 / blueprint §3.2.
+export via ``llmlab schema``. Book §3.3 / §3.2.
 """
 
 from __future__ import annotations

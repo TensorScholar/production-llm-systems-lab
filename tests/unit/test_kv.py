@@ -66,7 +66,7 @@ def test_slack_values() -> None:
 
 
 def test_g_decode_ch4() -> None:
-    # Blueprint quotes 2567.5; the exact rational is 2626560/1023 ≈ 2567.507.
+    # The book quotes 2567.5; the exact rational is 2626560/1023 ≈ 2567.507.
     # See docs/methodology/kv-accounting.md for the derivation note.
     assert kv.g_decode(2048, 1024, 16) == pytest.approx(
         GOLDEN["g_decode_P2048_O1024_q16"], abs=GOLDEN["g_decode_tolerance"]

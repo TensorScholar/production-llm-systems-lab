@@ -1,4 +1,4 @@
-"""Integrity checks for `llmlab validate` (blueprint §3.7)."""
+"""Integrity checks for the `llmlab validate` command."""
 
 from __future__ import annotations
 

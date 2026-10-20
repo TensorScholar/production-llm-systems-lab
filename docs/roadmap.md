@@ -9,7 +9,7 @@ Long-term architecture (experiments A–D, simulator, capacity planning) with th
 - **A4** KV saturation as concurrency rises (closed-loop). (needs GPU, T22)
 - **B0** load-generator / harness timing accuracy (mock ground truth, Tier-0). ✅ specified (T11)
 
-## Post-v0.1 (roadmap only — SOURCE BLOCKED)
+## Post-v0.1 (roadmap only — detailed specification unavailable)
 
 The recovered sources preserve architecture-level intent but **not** complete experimental contracts for:
 
@@ -18,5 +18,6 @@ The recovered sources preserve architecture-level intent but **not** complete ex
 - **D-series** capacity-planning protocols (missing).
 - Second engine compatibility contract (missing).
 
-Do not invent these protocols from names alone. See Part III of the implementation blueprint.
-Status of each item: **SOURCE BLOCKED — DETAILED POST-v0.1 SPECIFICATION NOT RECOVERED**.
+Do not invent these protocols from names alone; they require an approved design
+before implementation.
+Status of each item: **DETAILED POST-v0.1 SPECIFICATION NOT AVAILABLE**.

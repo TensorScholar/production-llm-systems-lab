@@ -19,7 +19,7 @@ prerequisites to execute after unblocking.
    - `configs/engines/vllm.yaml` version, command, digest;
    - `configs/engines/vllm-requirements.lock` (pip freeze of engine env);
    - `configs/engines/vllm-metrics.yaml` confirmed names (replace candidates).
-4. Resolve every `⚠` item in the blueprint or replace it in-spec; remove all
+4. Resolve every `⚠` item in the approved specification or replace it in-spec; remove all
    `PIN-IN-T13` placeholders; commit a compatibility note.
 
 ## Unverified until T13 (do NOT treat as verified)
